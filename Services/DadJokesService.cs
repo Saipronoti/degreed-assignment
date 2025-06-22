@@ -1,4 +1,7 @@
 
+using RestSharp;
+using degreed_assignment.Utils;
+using degreed_assignment.Models;
 
 public class DadJokesService{
      private readonly AppSettings _appSettings;
@@ -6,8 +9,8 @@ public class DadJokesService{
     public async Task<DadJokeResponseModel> GetRandomJoke()
         {
             
-            var client = new RestClient(_appSettings.IchdjBaseUrl);
-            var request = new RestRequest(_appSettings.IchdjRandomJokeEndpoint, Method.GET);
+            var client = new RestClient(_appSettings.BaseUrl);
+            var request = new RestRequest(_appSettings.ApiUrl, Method.GET);
 
             if (parameters != null)
                 foreach (var p in parameters) request.AddParameter(p);

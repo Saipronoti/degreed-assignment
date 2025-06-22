@@ -1,3 +1,4 @@
+namespace degreed_assignment.Models
 public class DadJokeResponseModel
 {
         public string Id { get; set; }
