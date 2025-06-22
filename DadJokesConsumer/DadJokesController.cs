@@ -15,4 +15,19 @@ public class DadJokesController
                 return BadRequest(new { message = e.Message });
             }
         }
+
+        [HttpGet("{term}")]
+        public async Task<ActionResult> SearchJoke(string term)
+        {
+            try
+            {
+              
+                
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+        }
 }
