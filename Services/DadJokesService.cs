@@ -12,9 +12,7 @@ public class DadJokesService{
             var client = new RestClient(_appSettings.BaseUrl);
             var request = new RestRequest(_appSettings.ApiUrl, Method.GET);
 
-            if (parameters != null)
-                foreach (var p in parameters) request.AddParameter(p);
-                    request.AddHeaders(headers);
+           
 
             var response = await client.ExecuteAsync(request);
             return response.Content;
@@ -24,5 +22,7 @@ public class DadJokesService{
 
             return JsonConvert.DeserializeObject<DadJokeResponseModel>(response);
         }
+
+        
 
 }
