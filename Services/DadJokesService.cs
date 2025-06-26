@@ -22,6 +22,20 @@ public class DadJokesService{
             return JsonConvert.DeserializeObject<DadJokeResponseModel>(response);
         }
 
+     public async Task<MultipleDadJokesResponseModel> SearchJoke(string term)
+        {
+            var response = await _restApiClient.GetRequest(_appSettings.BaseUrl, _appSettings.ApiUrl, 
+                new List<Parameter> { 
+                    new Parameter("limit", 30, ParameterType.QueryString),
+                    new Parameter("term", term, ParameterType.QueryString)
+                },
+                new Dictionary<string, string> { { "Accept", "application/json" } });
+
+            var result = JsonConvert.DeserializeObject<MultipleDadJokesResponseModel>(response);
+            result.Results.Sort((x, y) => x.Size.CompareTo(y.Size));
+            return result;
+        }
+
         
 
 }

@@ -18,9 +18,5 @@ namespace degreed_assignment.Utils
             var response = await client.ExecuteAsync(request);
             return response.Content;
         }
-        public async Task<DadJokeResponseModel> SearchJoke(string term)
-        {
-            return null;
-        }
     }
 }

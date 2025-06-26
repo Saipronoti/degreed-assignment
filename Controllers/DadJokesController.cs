@@ -16,8 +16,8 @@
             
             try
             {
-                var jokes = await _dadJokesService.GetRandomJoke();
-                return Ok(jokes);
+                var joke = await _dadJokesService.GetRandomJoke();
+                return Ok(joke);
             }
             catch (Exception e)
             {
@@ -25,20 +25,20 @@
             }
         }
 
-         [HttpGet("{term}")]
+       [HttpGet("{term}")]
         public async Task<ActionResult> SearchJoke(string term)
         {
             try
             {
+                var jokes = await _dadJokesService.SearchJoke(term);
                 
-                
-                return Ok();
+                return Ok(jokes);
             }
             catch (Exception e)
             {
                 return BadRequest(new { message = e.Message });
             }
-        }
+        }  
 
 
     }
