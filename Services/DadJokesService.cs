@@ -4,20 +4,19 @@ using degreed_assignment.Utils;
 using degreed_assignment.Models;
 
 public class DadJokesService{
+     private readonly RestApiClient _restApiClient;
      private readonly AppSettings _appSettings;
+
+     public DadJokesService(Options<AppSettings> appSettings,RestApiClient restApiClient)
+        {
+            _appSettings = appSettings.Value;
+            _restApiClient = restApiClient;
+        }
 
     public async Task<DadJokeResponseModel> GetRandomJoke()
         {
             
-            var client = new RestClient(_appSettings.BaseUrl);
-            var request = new RestRequest(_appSettings.ApiUrl, Method.GET);
-
-           
-
-            var response = await client.ExecuteAsync(request);
-            return response.Content;
-        
-            var response = await _restApiHelper.GetRequest(_appSettings.IchdjBaseUrl, _appSettings.IchdjRandomJokeEndpoint, null,
+            var response = await _restApiClient.GetRequest(_appSettings.BaseUrl, _appSettings.ApiUrl, null,
                 new Dictionary<string, string> { { "Accept", "application/json" } });
 
             return JsonConvert.DeserializeObject<DadJokeResponseModel>(response);

@@ -2,6 +2,13 @@
 [Route("api/[controller]")]
 [ApiController]
     public class DadJokesController{
+
+        private readonly DadJokesService _dadJokesService;
+
+        public DadJokesController(DadJokesService dadJokesService)
+        {
+            _dadJokesService = dadJokesService;
+        }
       
       [HttpGet()]
         public async Task<ActionResult> GetRandomJoke()
@@ -9,8 +16,8 @@
             
             try
             {
-                
-                return Ok();
+                var jokes = await _dadJokesService.GetRandomJoke();
+                return Ok(jokes);
             }
             catch (Exception e)
             {
