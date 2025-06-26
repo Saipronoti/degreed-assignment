@@ -1,7 +1,11 @@
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+
 [Produces("application/json")]
 [Route("api/[controller]")]
 [ApiController]
-    public class DadJokesController{
+    public class DadJokesController : ControllerBase {
 
         private readonly DadJokesService _dadJokesService;
 

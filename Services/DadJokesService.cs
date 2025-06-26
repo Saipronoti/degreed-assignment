@@ -2,12 +2,15 @@
 using RestSharp;
 using degreed_assignment.Utils;
 using degreed_assignment.Models;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+
 
 public class DadJokesService{
      private readonly RestApiClient _restApiClient;
      private readonly AppSettings _appSettings;
 
-     public DadJokesService(Options<AppSettings> appSettings,RestApiClient restApiClient)
+     public DadJokesService(IOptions<AppSettings> appSettings,RestApiClient restApiClient)
         {
             _appSettings = appSettings.Value;
             _restApiClient = restApiClient;
